@@ -1,0 +1,27 @@
+CREATE DATABASE IF NOT EXISTS loja ;
+
+USE loja ;
+
+CREATE TABLE IF NOT EXISTS clientes (
+id INT NOT NULL AUTO_INCREMENT,
+nome VARCHAR(45),
+data_nasc DATE NOT NULL, 
+PRIMARY KEY (id) 
+);
+
+CREATE TABLE IF NOT EXISTS pedidos (
+id INT NOT NULL AUTO_INCREMENT,
+data_pedido DATETIME NOT NULL, 
+id_cliente INT NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (id_cliente) REFERENCES clientes(id) 
+);
+
+CREATE TABLE IF NOT EXISTS pagamentos (
+id INT NOT NULL AUTO_INCREMENT,
+data_pagamento DATETIME NOT NULL, 
+valor_pagamento DECIMAL(10.2),
+id_pedido INT NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (id_pedido) REFERENCES pedidos(id) 
+);
